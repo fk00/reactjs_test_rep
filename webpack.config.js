@@ -20,10 +20,27 @@ module.exports = {
                exclude: /node_modules/,
                options: {
                  presets: ['@babel/env', '@babel/react'],
+				 plugins: [
+                       [
+                           "@babel/plugin-proposal-class-properties",
+                           {
+                               "loose": true
+                           }
+                       ]
+                   ]
                }
            },
+		   {
+			   test: /\.css$/,
+			   loader: 'style-loader!css-loader',
+		   },
+
        ],
    },
+   resolve: {
+       modules: [`${__dirname}/static_src`, 'node_modules'],
+       extensions: ['.js', '.jsx'],
+    },
 	plugins: [
 		new HtmlWebpackPlugin({ template: path.resolve(__dirname, "static_src", "index.html")})
 	]
